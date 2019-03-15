@@ -19,6 +19,5 @@ from myapp import views
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^ polls /', include('djangoproject.urls')),
-    url(r'^ admin /', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]

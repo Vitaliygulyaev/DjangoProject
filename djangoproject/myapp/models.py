@@ -1,32 +1,18 @@
 from django.db import models
 
-
-class Blog(models.Model):
-    name = models.CharField(max_length=100)
-    tagline = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-class Author(models.Model):
-    name = models.CharField(max_length=200)
+class PeopleInf(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.TextField()
     email = models.EmailField()
+    tel_number = models.CharField(max_length=11)
+objects = PeopleInf()
 
-    def __str__(self):
-        return self.name
+class User(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.TextField()
+    login = models.TextField(max_length=10)
+    password = models.CharField(min_length=8, max_length=15)
+    
 
-class Entry(models.Manager):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    headline = models.CharField(max_length=255)
-    body_text = models.TextField()
-    pub_date = models.DateField()
-    mod_date = models.DateField()
-    authors = models.ManyToManyField(Author)
-    n_comments = models.IntegerField()
-    n_pingbacks = models.IntegerField()
-    rating = models.IntegerField()
 
-    def __str__(self):
-        return self.headline
-# Create your models here.
 
